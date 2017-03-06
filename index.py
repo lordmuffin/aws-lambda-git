@@ -5,7 +5,6 @@ import boto3
 import git
 import shutil
 import json
-import cfnresponse
 s3 = boto3.resource('s3')
 
 def lambda_handler(event, context):
@@ -34,7 +33,5 @@ def lambda_handler(event, context):
         for filename in os.listdir('DIR_NAME'):
             buffer+= open(filename, 'rU').read()
             s3.Bucket(event["ResourceProperties"]["bucket_name"]).put_object(Key=filename, Body=buffer)
-            cfnresponse.send(event, context, cfnresponse.SUCCESS, responseData, ".zip pulled to S3 Bucket!")
     except Exception:
-        cfnresponse.send(event, context, cfnresponse.FAILED, responseData, "Bucket Name and Key are all required.")
         print "ERROR"
