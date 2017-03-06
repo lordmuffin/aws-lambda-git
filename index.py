@@ -30,8 +30,8 @@ def lambda_handler(event, context):
         print "---- DONE ----"
 
 # Foreach Object in the cloned folder, upload to s3 cloned folder.
-        for filename in os.listdir('DIR_NAME'):
-            buffer+= open(filename, 'rU').read()
-            s3.Bucket(event["ResourceProperties"]["bucket_name"]).put_object(Key=filename, Body=buffer)
+        #for filename in os.listdir('DIR_NAME'):
+        #    buffer+= open(filename, 'rU').read()
+        #    s3.Bucket(event["ResourceProperties"]["bucket_name"]).put_object(Key=filename, Body=buffer)
     except Exception:
         print "ERROR"
